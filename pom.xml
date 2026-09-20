@@ -10,7 +10,7 @@
     </parent>
     <groupId>nl.novi</groupId>
     <artifactId>backend-vinylshop-springboot-repository</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.2</version>
     <name>backend-vinylshop-springboot-repository</name>
     <description>backend-vinylshop-springboot-repository</description>
     <url/>
@@ -50,5 +50,19 @@
             </plugin>
         </plugins>
     </build>
+
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-data-jpa</artifactId>
+        <version>4.1.1</version>
+        <scope>compile</scope>
+    </dependency>
+
+    <dependency>
+        <groupId>org.postgresql</groupId>
+        <artifactId>postgresql</artifactId>
+        <version>42.7.13</version>
+        <scope>compile</scope>
+    </dependency>
 
 </project>
