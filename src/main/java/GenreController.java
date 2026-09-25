@@ -1,6 +1,6 @@
-import nl.novi.backendvinylshopspringbootmodellen.entities.Genre;
-import nl.novi.backendvinylshopspringbootmodellen.helpers.UrlHelper;
-import nl.novi.backendvinylshopspringbootmodellen.services.GenreService;
+import nl.novi.backendvinylshopspringbootrelaties.entities.Genre;
+import nl.novi.backendvinylshopspringbootrelaties.helpers.UrlHelper;
+import nl.novi.backendvinylshopspringbootrelaties.services.GenreService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
