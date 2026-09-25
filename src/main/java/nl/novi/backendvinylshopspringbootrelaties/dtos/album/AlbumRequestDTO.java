@@ -1,9 +1,6 @@
 package nl.novi.backendvinylshopspringbootrelaties.dtos.album;
 
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Past;
-import jakarta.validation.constraints.Pattern;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 
 public class AlbumRequestDTO {
     @NotBlank(message = "Titel mag niet  leeg zijn")
@@ -12,10 +9,8 @@ public class AlbumRequestDTO {
 
     @Past
     @NotBlank
-    @Pattern(
-            regexp = "^\\d{4}-\\d{2}-\\d{2}$",
-            message = "Datum moet het formaat yyyy-MM-dd hebben"
-    )
+    @Min(1877)
+    @Max(2100)
     private int releaseYear;
 
     public String getTitle() {
