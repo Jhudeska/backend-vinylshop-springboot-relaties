@@ -16,37 +16,39 @@ import java.util.Optional;
 public class PublisherService {
 
     private final PublisherRepository publisherRepository;
-    private final PublisherDTOMapper publisherDTOMapper;
+    private final PublisherDTOMapper publisherDtoMapper;
 
-    public PublisherService(PublisherRepository publisherRepository, PublisherDTOMapper publisherDTOMapper) {
+    public PublisherService(PublisherRepository publisherRepository, PublisherDTOMapper publisherDtoMapper) {
         this.publisherRepository = publisherRepository;
-        this.publisherDTOMapper = publisherDTOMapper;
+        this.publisherDtoMapper = publisherDtoMapper;
     }
 
-    public List<PublisherEntity> findAllPublishers() {
-        return publisherRepository.findAll();
+    public List<PublisherResponseDTO> findAllPublishers() {
+        return publisherDtoMapper.mapToDto(publisherRepository.findAll());
     }
 
-    public PublisherEntity findPublisherById(Long id) {
-        return getPublisherById(id);
+    public PublisherResponseDTO findPublisherById(Long id) throws RecordNotFoundException {
+        PublisherEntity publisherEntity = getPublisherEntity(id);
+        return publisherDtoMapper.mapToDto(publisherEntity);
     }
 
     public PublisherResponseDTO createPublisher(PublisherRequestDTO publisherDTO) {
-        PublisherEntity publisherEntity = publisherDTOMapper.mapToEntity(publisherDTO);
+        PublisherEntity publisherEntity = publisherDtoMapper.mapToEntity(publisherDTO);
         publisherEntity = publisherRepository.save(publisherEntity);
-        return publisherDTOMapper.mapToDto(publisherEntity);
+        return publisherDtoMapper.mapToDto(publisherEntity);
     }
 
-    public PublisherEntity updatePublisher(Long id, PublisherEntity input) {
-        PublisherEntity publisherEntity = getPublisherById(id);
-        if(publisherEntity != null){
-            publisherEntity.setAddress(input.getAddress());
-            publisherEntity.setName(input.getName());
-            publisherEntity.setContactDetails(input.getContactDetails());
-            return publisherRepository.save(publisherEntity);
-        }
-        return null;
+    public PublisherResponseDTO updatePublisher(Long id, PublisherRequestDTO publisherModel) throws RecordNotFoundException {
+        PublisherEntity existingPublisherEntity = getPublisherEntity(id);
+
+        existingPublisherEntity.setName(publisherModel.getName());
+        existingPublisherEntity.setAddress(publisherModel.getAddress());
+        existingPublisherEntity.setContactDetails(publisherModel.getContactDetails());
+
+        existingPublisherEntity = publisherRepository.save(existingPublisherEntity);
+        return publisherDtoMapper.mapToDto(existingPublisherEntity);
     }
+
 
     public void deletePublisher(Long id) {
         publisherRepository.deleteById(id);
@@ -57,5 +59,12 @@ public class PublisherService {
 
 //        De Optional.orElse() methode haalt de waarde uit de optional, of anders... Dit is één variant om met de Optional om te gaan.
         return publisherEntityOptional.orElse(null);
+    }
+
+    //    Deze helper methode haalt de Entity uit de Repository en valideert het. Deze actie werd op meerdere plekken gedaan, daarom is er een helper methode voor gemaakt.
+    private PublisherEntity getPublisherEntity(Long id) {
+        PublisherEntity publisherEntity = publisherRepository.findById(id)
+                .orElseThrow(() -> new RecordNotFoundException("Publisher " + id +" not found"));
+        return publisherEntity;
     }
 }
