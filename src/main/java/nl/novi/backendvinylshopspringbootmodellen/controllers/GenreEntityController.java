@@ -1,8 +1,8 @@
-package nl.novi.backendvinylshopspringbootrepository.controllers;
+package nl.novi.backendvinylshopspringbootmodellen.controllers;
 
-import nl.novi.backendvinylshopspringbootrepository.entities.GenreEntity;
-import nl.novi.backendvinylshopspringbootrepository.helpers.UrlHelper;
-import nl.novi.backendvinylshopspringbootrepository.services.GenreEntityService;
+import nl.novi.backendvinylshopspringbootmodellen.entities.GenreEntity;
+import nl.novi.backendvinylshopspringbootmodellen.helpers.UrlHelper;
+import nl.novi.backendvinylshopspringbootmodellen.services.GenreEntityService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

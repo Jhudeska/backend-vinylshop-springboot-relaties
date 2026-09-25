@@ -1,7 +1,7 @@
-package nl.novi.backendvinylshopspringbootrepository.repository;
+package nl.novi.backendvinylshopspringbootmodellen.repository;
 
 
-import nl.novi.backendvinylshopspringbootrepository.entities.PublisherEntity;
+import nl.novi.backendvinylshopspringbootmodellen.entities.PublisherEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface PublisherRepository extends JpaRepository<PublisherEntity, Long> {

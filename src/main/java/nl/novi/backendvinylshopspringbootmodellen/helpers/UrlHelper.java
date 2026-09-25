@@ -1,4 +1,4 @@
-package nl.novi.backendvinylshopspringbootrepository.helpers;
+package nl.novi.backendvinylshopspringbootmodellen.helpers;
 
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Component;

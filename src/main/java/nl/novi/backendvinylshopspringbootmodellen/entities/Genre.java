@@ -1,4 +1,4 @@
-package nl.novi.backendvinylshopspringbootrepository.entities;
+package nl.novi.backendvinylshopspringbootmodellen.entities;
 
 public class Genre {
     /**

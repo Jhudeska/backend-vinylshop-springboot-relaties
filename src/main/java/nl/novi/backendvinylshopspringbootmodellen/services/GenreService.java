@@ -1,6 +1,6 @@
-package nl.novi.backendvinylshopspringbootrepository.services;
+package nl.novi.backendvinylshopspringbootmodellen.services;
 
-import nl.novi.backendvinylshopspringbootrepository.entities.Genre;
+import nl.novi.backendvinylshopspringbootmodellen.entities.Genre;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
