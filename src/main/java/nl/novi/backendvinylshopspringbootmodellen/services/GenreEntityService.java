@@ -23,13 +23,14 @@ public class GenreEntityService {
     }
 
 
-    public List<GenreEntity> findAllGenres() {
-        return genreEntityRepository.findAll();
+    public List<GenreResponseDTO> findAllGenres() {
+        return genreDTOMapper.mapToDto(genreEntityRepository.findAll());
     }
 
 
-    public GenreEntity findGenreById(Long id) {
-        return getGenreById(id);
+    public GenreResponseDTO findGenreById(Long id) throws EntityNotFoundException {
+        GenreEntity genreEntity = getGenreEntity(id);
+        return genreDTOMapper.mapToDto(genreEntity);
     }
 
 
@@ -40,17 +41,21 @@ public GenreResponseDTO createGenre(GenreRequestDTO genreDTO) {
     }
 
 
-    public GenreEntity updateGenre(Long id, GenreEntity input) {
-        GenreEntity genre = getGenreById(id);
-        if(genre != null) {
-            genre.setDescription(input.getDescription());
-            genre.setName(input.getName());
-            return genreEntityRepository.save(genre);
-        }
+    public GenreResponseDTO updateGenre(Long id, GenreRequestDTO requestDto) throws EntityNotFoundException {
+        GenreEntity existingGenreEntity = getGenreEntity(id);
 
-        return null;
+        existingGenreEntity.setName(requestDto.getName());
+        existingGenreEntity.setDescription(requestDto.getDescription());
+
+        existingGenreEntity = genreEntityRepository.save(existingGenreEntity);
+        return genreDTOMapper.mapToDto(existingGenreEntity);
     }
 
+    private GenreEntity getGenreEntity(Long id) {
+        GenreEntity existingGenreEntity = genreEntityRepository.findById(id)
+                .orElseThrow(() -> new RecordNotFoundException("Genre " + id +" not found"));
+        return existingGenreEntity;
+    }
 
     public void deleteGenre(Long id) {
         genreEntityRepository.deleteById(id);
@@ -63,7 +68,7 @@ public GenreResponseDTO createGenre(GenreRequestDTO genreDTO) {
         if(genreEntityOptional.isPresent()){
             return genreEntityOptional.get();
         } else {
-            return null;
+            throw new RecordNotFoundException("Genre " + id +" not found");
         }
     }
 
