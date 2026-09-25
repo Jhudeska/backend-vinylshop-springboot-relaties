@@ -8,7 +8,7 @@ import nl.novi.backendvinylshopspringbootmodellen.mapper.DTOMapper;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GenreRequestDTOMapper implements DTOMapper<GenreResponseDTO, GenreRequestDTO, GenreEntity> {
+public class GenreDTOMapper implements DTOMapper<GenreResponseDTO, GenreRequestDTO, GenreEntity> {
     @Override
     public GenreResponseDTO mapToDto(GenreEntity model) {
         var result = new GenreResponseDTO();

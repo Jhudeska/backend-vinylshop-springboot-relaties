@@ -1,7 +1,10 @@
 package nl.novi.backendvinylshopspringbootmodellen.services;
 
 
+import nl.novi.backendvinylshopspringbootmodellen.dtos.genre.GenreRequestDTO;
+import nl.novi.backendvinylshopspringbootmodellen.dtos.genre.GenreResponseDTO;
 import nl.novi.backendvinylshopspringbootmodellen.entities.GenreEntity;
+import nl.novi.backendvinylshopspringbootmodellen.mapperImpl.GenreDTOMapper;
 import nl.novi.backendvinylshopspringbootmodellen.repository.GenreEntityRepository;
 import org.springframework.stereotype.Service;
 
@@ -12,9 +15,11 @@ import java.util.Optional;
 public class GenreEntityService {
 
     private final GenreEntityRepository genreEntityRepository;
+    private final GenreDTOMapper genreDTOMapper;
 
-    public GenreEntityService(GenreEntityRepository genreRepository) {
+    public GenreEntityService(GenreEntityRepository genreRepository, GenreDTOMapper genreDTOMapper) {
         this.genreEntityRepository = genreRepository;
+        this.genreDTOMapper = genreDTOMapper;
     }
 
 
@@ -28,8 +33,10 @@ public class GenreEntityService {
     }
 
 
-    public GenreEntity createGenre(GenreEntity input) {
-        return genreEntityRepository.save(input);
+public GenreResponseDTO createGenre(GenreRequestDTO genreDTO) {
+        GenreEntity genreEntity = genreDTOMapper.mapToEntity(genreDTO);
+        genreEntity = genreEntityRepository.save(genreEntity);
+        return genreDTOMapper.mapToDto(genreEntity);
     }
 
 

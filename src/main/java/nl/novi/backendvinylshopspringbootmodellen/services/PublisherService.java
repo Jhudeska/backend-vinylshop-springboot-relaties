@@ -1,7 +1,11 @@
 package nl.novi.backendvinylshopspringbootmodellen.services;
 
 
+import nl.novi.backendvinylshopspringbootmodellen.dtos.publisher.PublisherRequestDTO;
+import nl.novi.backendvinylshopspringbootmodellen.dtos.publisher.PublisherResponseDTO;
 import nl.novi.backendvinylshopspringbootmodellen.entities.PublisherEntity;
+import nl.novi.backendvinylshopspringbootmodellen.mapperImpl.GenreDTOMapper;
+import nl.novi.backendvinylshopspringbootmodellen.mapperImpl.PublisherDTOMapper;
 import nl.novi.backendvinylshopspringbootmodellen.repository.PublisherRepository;
 import org.springframework.stereotype.Service;
 
@@ -12,9 +16,11 @@ import java.util.Optional;
 public class PublisherService {
 
     private final PublisherRepository publisherRepository;
+    private final PublisherDTOMapper publisherDTOMapper;
 
-    public PublisherService(PublisherRepository publisherRepository) {
+    public PublisherService(PublisherRepository publisherRepository, PublisherDTOMapper publisherDTOMapper) {
         this.publisherRepository = publisherRepository;
+        this.publisherDTOMapper = publisherDTOMapper;
     }
 
     public List<PublisherEntity> findAllPublishers() {
@@ -25,8 +31,10 @@ public class PublisherService {
         return getPublisherById(id);
     }
 
-    public PublisherEntity createPublisher(PublisherEntity inputPublisher) {
-        return publisherRepository.save(inputPublisher);
+    public PublisherResponseDTO createPublisher(PublisherRequestDTO publisherDTO) {
+        PublisherEntity publisherEntity = publisherDTOMapper.mapToEntity(publisherDTO);
+        publisherEntity = publisherRepository.save(publisherEntity);
+        return publisherDTOMapper.mapToDto(publisherEntity);
     }
 
     public PublisherEntity updatePublisher(Long id, PublisherEntity input) {
