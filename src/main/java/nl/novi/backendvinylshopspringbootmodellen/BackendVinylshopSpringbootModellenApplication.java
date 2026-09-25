@@ -9,5 +9,4 @@ public class BackendVinylshopSpringbootModellenApplication {
     public static void main(String[] args) {
         SpringApplication.run(BackendVinylshopSpringbootModellenApplication.class, args);
     }
-
 }
