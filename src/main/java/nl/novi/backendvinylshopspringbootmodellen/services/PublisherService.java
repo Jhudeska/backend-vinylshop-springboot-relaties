@@ -4,7 +4,7 @@ package nl.novi.backendvinylshopspringbootmodellen.services;
 import nl.novi.backendvinylshopspringbootmodellen.dtos.publisher.PublisherRequestDTO;
 import nl.novi.backendvinylshopspringbootmodellen.dtos.publisher.PublisherResponseDTO;
 import nl.novi.backendvinylshopspringbootmodellen.entities.PublisherEntity;
-import nl.novi.backendvinylshopspringbootmodellen.mapperImpl.GenreDTOMapper;
+import nl.novi.backendvinylshopspringbootmodellen.exceptions.RecordNotFoundException;
 import nl.novi.backendvinylshopspringbootmodellen.mapperImpl.PublisherDTOMapper;
 import nl.novi.backendvinylshopspringbootmodellen.repository.PublisherRepository;
 import org.springframework.stereotype.Service;
