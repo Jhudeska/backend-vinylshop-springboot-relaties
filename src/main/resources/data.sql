@@ -28,7 +28,7 @@ values (
        );
 
 -- Insert into Albums met statische genre_id en publisher_id
-insert into Albums (created_at, updated_at, genre_id, publisher_id, title, release_year)
+insert into albums (created_at, updated_at, genre_id, publisher_id, title, release_year)
 values ( now(), now(), 1, 1, 'The best of', 1986),
        (now(), now(), null, 2, 'Hakkuhbar', 1979);
 
