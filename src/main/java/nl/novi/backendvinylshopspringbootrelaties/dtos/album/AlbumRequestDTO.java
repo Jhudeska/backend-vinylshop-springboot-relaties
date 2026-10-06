@@ -4,11 +4,12 @@ import jakarta.validation.constraints.*;
 
 public class AlbumRequestDTO {
     @NotBlank(message = "Titel mag niet  leeg zijn")
-    @Size(min = 2, max = 100, message = "Titel moet tussen 2 en 100 karakters lang zijn")
+    @Size(min = 3, max = 100, message = "Titel moet tussen 3 en 100 karakters lang zijn")
     private String title;
 
-    @Min(1877)
-    @Max(2100)
+    @NotNull(message = "Releasejaar is verplicht")
+    @Min(value = 1877, message = "Releasejaar moet minimaal 1877 zijn")
+    @Max(value = 2100, message = "Releasejaar mag maximaal 2100")
     private int releaseYear;
 
     public String getTitle() {

@@ -1,9 +1,10 @@
 package nl.novi.backendvinylshopspringbootrelaties.dtos.artist;
 
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 public class ArtistRequestDTO {
-    @NotNull
+    @NotBlank(message = "Naam mag niet leeg zijn")
     private String name;
     private String biography;
 
