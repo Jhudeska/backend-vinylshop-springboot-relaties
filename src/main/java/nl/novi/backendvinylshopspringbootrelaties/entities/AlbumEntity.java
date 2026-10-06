@@ -14,7 +14,7 @@ public class AlbumEntity extends BaseEntity {
 
     @ManyToMany
     @JoinTable(
-            name = "album_artist",
+            name = "album_artists",
             joinColumns = @JoinColumn(name = "album_id"),
             inverseJoinColumns = @JoinColumn(name = "artist_id")
     )

@@ -31,6 +31,11 @@ public class AlbumDTOMapper implements DTOMapper<AlbumResponseDTO, AlbumRequestD
 
     @Override
     public AlbumEntity mapToEntity(AlbumRequestDTO dto) {
-        return null;
+        AlbumEntity album = new AlbumEntity();
+
+        album.setTitle(dto.getTitle());
+        album.setReleaseYear(dto.getReleaseYear());
+
+        return album;
     }
 }
