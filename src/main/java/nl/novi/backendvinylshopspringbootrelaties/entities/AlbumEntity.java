@@ -18,6 +18,11 @@ public class AlbumEntity extends BaseEntity {
     )
     private List<ArtistEntity> artists;
 
+
+    @OneToMany(mappedBy = "album")
+    private List<StockEntity> stock;
+
+
     public String getTitle() {
         return title;
     }
@@ -40,5 +45,13 @@ public class AlbumEntity extends BaseEntity {
 
     public void setArtists(List<ArtistEntity> artists) {
         this.artists = artists;
+    }
+
+    public List<StockEntity> getStock() {
+        return stock;
+    }
+
+    public void setStock(List<StockEntity> stock) {
+        this.stock = stock;
     }
 }

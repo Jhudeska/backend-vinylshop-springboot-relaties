@@ -1,6 +1,7 @@
 package nl.novi.backendvinylshopspringbootrelaties.entities;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -8,6 +9,10 @@ import jakarta.persistence.Table;
 public class StockEntity extends BaseEntity {
     private String condition;
     private double price;
+
+    @ManyToOne
+    private AlbumEntity album;
+
 
     public String getCondition() {
         return condition;
@@ -20,5 +25,13 @@ public class StockEntity extends BaseEntity {
     }
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public AlbumEntity getAlbum() {
+        return album;
+    }
+
+    public void setAlbum(AlbumEntity album) {
+        this.album = album;
     }
 }
