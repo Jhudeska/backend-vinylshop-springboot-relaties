@@ -18,6 +18,7 @@ public class AlbumDTOMapper implements DTOMapper<AlbumResponseDTO, AlbumRequestD
         AlbumResponseDTO dto = new AlbumResponseDTO();
         dto.setId(model.getId());
         dto.setTitle(model.getTitle());
+        dto.setReleaseYear(model.getReleaseYear());
         return dto;
     }
 
@@ -35,7 +36,6 @@ public class AlbumDTOMapper implements DTOMapper<AlbumResponseDTO, AlbumRequestD
 
         album.setTitle(dto.getTitle());
         album.setReleaseYear(dto.getReleaseYear());
-
         return album;
     }
 }
