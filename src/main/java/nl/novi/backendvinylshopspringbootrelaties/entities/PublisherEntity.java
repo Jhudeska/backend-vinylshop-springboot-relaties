@@ -1,9 +1,6 @@
 package nl.novi.backendvinylshopspringbootrelaties.entities;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.util.List;
 
@@ -32,7 +29,9 @@ public class PublisherEntity extends BaseEntity {
     public String getAddress() {
         return address;
     }
-    public void setAddress(String address) {}
+    public void setAddress(String address) {
+        this.address = address;
+    }
 
     public String getContactDetails() {
         return contactDetails;
