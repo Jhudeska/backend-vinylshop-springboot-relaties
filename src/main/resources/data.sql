@@ -17,7 +17,7 @@ values (now(), now(), 'Soul', 'It is good for your soul'),
 
 
 -- Insert into Albums met dynamische genre_id en publisher_id
-insert into Albums (created_at, updated_at, genre_id, publisher_id, title, release_year)
+insert into albums (created_at, updated_at, genre_id, publisher_id, title, release_year)
 values (
            now(),
            now(),

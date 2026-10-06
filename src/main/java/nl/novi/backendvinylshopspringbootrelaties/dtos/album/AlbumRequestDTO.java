@@ -7,8 +7,6 @@ public class AlbumRequestDTO {
     @Size(min = 2, max = 100, message = "Titel moet tussen 2 en 100 karakters lang zijn")
     private String title;
 
-    @Past
-    @NotBlank
     @Min(1877)
     @Max(2100)
     private int releaseYear;
@@ -22,5 +20,7 @@ public class AlbumRequestDTO {
     public int getReleaseYear() {
         return releaseYear;
     }
-    public void setReleaseYear(int releaseYear) {}
+    public void setReleaseYear(int releaseYear) {
+        this.releaseYear = releaseYear;
+    }
 }
