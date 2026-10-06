@@ -40,4 +40,11 @@ public class AlbumService {
         return albumDTOMapper.mapToDto(albums);
     }
 
+    public AlbumResponseDTO getAlbumById(Long id) {
+        AlbumEntity album = albumRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Album not found"));
+        return albumDTOMapper.mapToDto(album);
+    }
+
+
 }
