@@ -26,6 +26,11 @@ public class AlbumEntity extends BaseEntity {
     @ManyToOne
     private PublisherEntity publisher;
 
+    //Unidirectional
+    @ManyToOne
+    private GenreEntity genre;
+
+
 
     public String getTitle() {
         return title;
@@ -55,8 +60,6 @@ public class AlbumEntity extends BaseEntity {
         return stockItems;
     }
 
-
-
     public PublisherEntity getPublisher() {
         return publisher;
     }
@@ -68,4 +71,13 @@ public class AlbumEntity extends BaseEntity {
     public void setStockItems(List<StockEntity> stockItems) {
         this.stockItems = stockItems;
     }
+
+    public GenreEntity getGenre() {
+        return genre;
+    }
+
+    public void setGenre(GenreEntity genre) {
+        this.genre = genre;
+    }
+
 }
