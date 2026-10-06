@@ -7,6 +7,7 @@ import java.util.List;
 @Entity
 @Table(name = "publishers")
 public class PublisherEntity extends BaseEntity {
+    // Erft id van BaseEntity
 
     @Column(name = "name",  nullable = false, length = 63)
     private String name;

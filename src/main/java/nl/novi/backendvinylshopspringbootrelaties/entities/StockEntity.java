@@ -1,12 +1,11 @@
 package nl.novi.backendvinylshopspringbootrelaties.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "stock")
 public class StockEntity extends BaseEntity {
+
     private String condition;
     private double price;
 

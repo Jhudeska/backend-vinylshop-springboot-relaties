@@ -1,14 +1,13 @@
 package nl.novi.backendvinylshopspringbootrelaties.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.util.List;
 
 @Entity
 @Table(name = "artists")
 public class ArtistEntity extends BaseEntity {
+
     private String name;
     private String biography;
 

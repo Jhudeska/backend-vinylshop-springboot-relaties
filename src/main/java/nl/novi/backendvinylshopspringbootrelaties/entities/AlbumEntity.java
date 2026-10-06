@@ -7,6 +7,8 @@ import java.util.List;
 @Entity
 @Table(name = "albums")
 public class AlbumEntity extends BaseEntity {
+
+    // Erft id van BaseEntity
     private String title;
     private int releaseYear;
 
