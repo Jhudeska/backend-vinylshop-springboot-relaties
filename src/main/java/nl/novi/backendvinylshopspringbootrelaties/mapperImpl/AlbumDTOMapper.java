@@ -23,8 +23,11 @@ public class AlbumDTOMapper implements DTOMapper<AlbumResponseDTO, AlbumRequestD
 
     @Override
     public List<AlbumResponseDTO> mapToDto(List<AlbumEntity> models) {
-        return List.of();
+        return models.stream()
+                .map(this::mapToDto)
+                .toList();
     }
+
 
     @Override
     public AlbumEntity mapToEntity(AlbumRequestDTO dto) {

@@ -1,12 +1,16 @@
 package nl.novi.backendvinylshopspringbootrelaties.services;
 
 import nl.novi.backendvinylshopspringbootrelaties.dtos.album.AlbumExtendedResponseDTO;
+import nl.novi.backendvinylshopspringbootrelaties.dtos.album.AlbumResponseDTO;
+import nl.novi.backendvinylshopspringbootrelaties.entities.AlbumEntity;
 import nl.novi.backendvinylshopspringbootrelaties.mapperImpl.AlbumDTOMapper;
 import nl.novi.backendvinylshopspringbootrelaties.repository.AlbumRepository;
 import nl.novi.backendvinylshopspringbootrelaties.repository.ArtistRepository;
 import nl.novi.backendvinylshopspringbootrelaties.repository.GenreEntityRepository;
 import nl.novi.backendvinylshopspringbootrelaties.repository.PublisherRepository;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class AlbumService {
@@ -30,4 +34,10 @@ public class AlbumService {
         this.publisherRepository = publisherRepository;
         this.genreRepository = genreRepository;
     }
+
+    public List<AlbumResponseDTO> getAllAlbums() {
+        List<AlbumEntity> albums = albumRepository.findAll();
+        return albumDTOMapper.mapToDto(albums);
+    }
+
 }
