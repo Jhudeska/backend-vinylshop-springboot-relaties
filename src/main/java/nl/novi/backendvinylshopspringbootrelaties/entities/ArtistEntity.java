@@ -13,7 +13,7 @@ public class ArtistEntity extends BaseEntity {
     private String biography;
 
     @ManyToMany(mappedBy = "artists")
-    private List<ArtistEntity> artists;
+    private List<AlbumEntity> albums;
 
     public String getName() {
         return name;
@@ -26,6 +26,14 @@ public class ArtistEntity extends BaseEntity {
     }
     public void setBiography(String biography) {
         this.biography = biography;
+    }
+
+    public List<AlbumEntity> getAlbums() {
+        return albums;
+    }
+
+    public void setAlbums(List<AlbumEntity> albums) {
+        this.albums = albums;
     }
 
 
