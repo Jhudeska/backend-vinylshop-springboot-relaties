@@ -1,11 +1,17 @@
 package nl.novi.backendvinylshopspringbootrelaties.dtos.album;
 
+import nl.novi.backendvinylshopspringbootrelaties.dtos.genre.GenreResponseDTO;
+import nl.novi.backendvinylshopspringbootrelaties.dtos.publisher.PublisherResponseDTO;
+
 public class AlbumResponseDTO {
 
     // DTO Response of album
     private Long id;
     private String title;
-    private int releaseYear;
+    private Integer releaseYear;
+
+    private GenreResponseDTO genre;
+    private PublisherResponseDTO publisher;
 
     public Long getId() {
         return id;
@@ -20,11 +26,28 @@ public class AlbumResponseDTO {
         this.title = title;
     }
 
-    public int getReleaseYear() {
+    public Integer getReleaseYear() {
         return releaseYear;
     }
 
-    public void setReleaseYear(int releaseYear) {
+    public void setReleaseYear(Integer releaseYear) {
         this.releaseYear = releaseYear;
     }
+
+    public GenreResponseDTO getGenre() {
+        return genre;
+    }
+
+    public void setGenre(GenreResponseDTO genre) {
+        this.genre = genre;
+    }
+
+    public PublisherResponseDTO getPublisher() {
+        return publisher;
+    }
+
+    public void setPublisher(PublisherResponseDTO publisher) {
+        this.publisher = publisher;
+    }
+
 }

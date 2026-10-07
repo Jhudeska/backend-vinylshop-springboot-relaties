@@ -6,7 +6,7 @@ import jakarta.validation.constraints.Positive;
 public class StockRequestDTO {
     private String condition;
 
-    @Positive
+    @Positive(message = "Prijs moet groter zijn dan 0")
     @NotNull(message = "Prijs mag niet leeg zijn")
     private double price;
 

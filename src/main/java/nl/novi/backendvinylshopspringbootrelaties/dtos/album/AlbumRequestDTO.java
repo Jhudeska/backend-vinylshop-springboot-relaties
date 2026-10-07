@@ -10,7 +10,11 @@ public class AlbumRequestDTO {
     @NotNull(message = "Releasejaar is verplicht")
     @Min(value = 1877, message = "Releasejaar moet minimaal 1877 zijn")
     @Max(value = 2100, message = "Releasejaar mag maximaal 2100")
-    private int releaseYear;
+    private Integer releaseYear;
+
+    private Long genreId;
+
+    private Long publisherId;
 
     public String getTitle() {
         return title;
@@ -18,10 +22,26 @@ public class AlbumRequestDTO {
     public void setTitle(String title) {
         this.title = title;
     }
-    public int getReleaseYear() {
+    public Integer getReleaseYear() {
         return releaseYear;
     }
-    public void setReleaseYear(int releaseYear) {
+    public void setReleaseYear(Integer releaseYear) {
         this.releaseYear = releaseYear;
     }
+    public Long getGenreId() {
+        return genreId;
+    }
+
+    public void setGenreId(Long genreId) {
+        this.genreId = genreId;
+    }
+
+    public Long getPublisherId() {
+        return publisherId;
+    }
+
+    public void setPublisherId(Long publisherId) {
+        this.publisherId = publisherId;
+    }
 }
+
