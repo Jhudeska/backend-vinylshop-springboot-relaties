@@ -4,6 +4,7 @@ import nl.novi.backendvinylshopspringbootrelaties.dtos.album.AlbumExtendedRespon
 import nl.novi.backendvinylshopspringbootrelaties.dtos.album.AlbumResponseDTO;
 import nl.novi.backendvinylshopspringbootrelaties.entities.AlbumEntity;
 import nl.novi.backendvinylshopspringbootrelaties.mapperImpl.AlbumDTOMapper;
+import nl.novi.backendvinylshopspringbootrelaties.mapperImpl.AlbumExtendedDTOMapper;
 import nl.novi.backendvinylshopspringbootrelaties.repository.AlbumRepository;
 import nl.novi.backendvinylshopspringbootrelaties.repository.ArtistRepository;
 import nl.novi.backendvinylshopspringbootrelaties.repository.GenreEntityRepository;
@@ -18,6 +19,7 @@ public class AlbumService {
     private final AlbumRepository albumRepository;
     private final ArtistRepository artistRepository;
     private final AlbumDTOMapper albumDTOMapper;
+    private final AlbumExtendedDTOMapper albumExtendedDTOMapper;
     private final PublisherRepository publisherRepository;
     private final GenreEntityRepository genreRepository;
 
@@ -25,12 +27,14 @@ public class AlbumService {
             AlbumRepository albumRepository,
             ArtistRepository artistRepository,
             AlbumDTOMapper albumDTOMapper,
+            AlbumExtendedDTOMapper albumExtendedDTOMapper,
             PublisherRepository publisherRepository,
             GenreEntityRepository genreRepository
     ) {
         this.albumRepository = albumRepository;
         this.artistRepository = artistRepository;
         this.albumDTOMapper = albumDTOMapper;
+        this.albumExtendedDTOMapper = albumExtendedDTOMapper;
         this.publisherRepository = publisherRepository;
         this.genreRepository = genreRepository;
     }
@@ -40,10 +44,10 @@ public class AlbumService {
         return albumDTOMapper.mapToDto(albums);
     }
 
-    public AlbumResponseDTO getAlbumById(Long id) {
+    public AlbumExtendedResponseDTO getAlbumById(Long id) {
         AlbumEntity album = albumRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Album not found"));
-        return albumDTOMapper.mapToDto(album);
+        return albumExtendedDTOMapper.mapToDto(album);
     }
 
 
