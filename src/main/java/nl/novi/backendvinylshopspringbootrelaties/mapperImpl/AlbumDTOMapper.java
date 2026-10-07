@@ -4,10 +4,11 @@ import nl.novi.backendvinylshopspringbootrelaties.dtos.album.AlbumRequestDTO;
 import nl.novi.backendvinylshopspringbootrelaties.dtos.album.AlbumResponseDTO;
 import nl.novi.backendvinylshopspringbootrelaties.entities.AlbumEntity;
 import nl.novi.backendvinylshopspringbootrelaties.mapper.DTOMapper;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
-
+@Primary
 @Component
 public class AlbumDTOMapper implements DTOMapper<AlbumResponseDTO, AlbumRequestDTO, AlbumEntity> {
     private final GenreDTOMapper genreDTOMapper;

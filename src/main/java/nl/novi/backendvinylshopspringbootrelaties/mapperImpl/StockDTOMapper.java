@@ -4,9 +4,11 @@ import nl.novi.backendvinylshopspringbootrelaties.dtos.stock.StockRequestDTO;
 import nl.novi.backendvinylshopspringbootrelaties.dtos.stock.StockResponseDTO;
 import nl.novi.backendvinylshopspringbootrelaties.entities.StockEntity;
 import nl.novi.backendvinylshopspringbootrelaties.mapper.DTOMapper;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Component
 public class StockDTOMapper implements DTOMapper<StockResponseDTO, StockRequestDTO, StockEntity> {
 
     @Override
