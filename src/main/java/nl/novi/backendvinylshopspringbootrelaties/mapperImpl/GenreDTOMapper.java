@@ -4,10 +4,12 @@ import nl.novi.backendvinylshopspringbootrelaties.dtos.genre.GenreRequestDTO;
 import nl.novi.backendvinylshopspringbootrelaties.dtos.genre.GenreResponseDTO;
 import nl.novi.backendvinylshopspringbootrelaties.entities.GenreEntity;
 import nl.novi.backendvinylshopspringbootrelaties.mapper.DTOMapper;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class GenreDTOMapper implements DTOMapper<GenreResponseDTO, GenreRequestDTO, GenreEntity> {
     @Override
     public GenreResponseDTO mapToDto(GenreEntity model) {

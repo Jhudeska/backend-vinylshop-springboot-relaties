@@ -1,12 +1,13 @@
 package nl.novi.backendvinylshopspringbootrelaties.entities;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 @Table(name = "publishers")
 public class PublisherEntity extends BaseEntity {
+    // Erft id van BaseEntity
 
     @Column(name = "name",  nullable = false, length = 63)
     private String name;
@@ -15,6 +16,10 @@ public class PublisherEntity extends BaseEntity {
     private String address;
 
     private String contactDetails;
+
+    @OneToMany(mappedBy = "publisher")
+    private List<AlbumEntity> albums;
+
 
     public String getName() {
         return name;
@@ -25,7 +30,9 @@ public class PublisherEntity extends BaseEntity {
     public String getAddress() {
         return address;
     }
-    public void setAddress(String address) {}
+    public void setAddress(String address) {
+        this.address = address;
+    }
 
     public String getContactDetails() {
         return contactDetails;
@@ -33,5 +40,13 @@ public class PublisherEntity extends BaseEntity {
 
     public void setContactDetails(String contactDetails) {
         this.contactDetails = contactDetails;
+    }
+
+    public List<AlbumEntity> getAlbums() {
+        return albums;
+    }
+
+    public void setAlbums(List<AlbumEntity> albums) {
+        this.albums = albums;
     }
 }

@@ -1,26 +1,29 @@
 package nl.novi.backendvinylshopspringbootrelaties.services;
 
-
 import nl.novi.backendvinylshopspringbootrelaties.dtos.publisher.PublisherRequestDTO;
 import nl.novi.backendvinylshopspringbootrelaties.dtos.publisher.PublisherResponseDTO;
+import nl.novi.backendvinylshopspringbootrelaties.entities.AlbumEntity;
 import nl.novi.backendvinylshopspringbootrelaties.entities.PublisherEntity;
 import nl.novi.backendvinylshopspringbootrelaties.exceptions.RecordNotFoundException;
 import nl.novi.backendvinylshopspringbootrelaties.mapperImpl.PublisherDTOMapper;
+import nl.novi.backendvinylshopspringbootrelaties.repository.AlbumRepository;
 import nl.novi.backendvinylshopspringbootrelaties.repository.PublisherRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class PublisherService {
 
     private final PublisherRepository publisherRepository;
     private final PublisherDTOMapper publisherDtoMapper;
+    private final AlbumRepository albumRepository;
 
-    public PublisherService(PublisherRepository publisherRepository, PublisherDTOMapper publisherDtoMapper) {
+
+    public PublisherService(PublisherRepository publisherRepository, PublisherDTOMapper publisherDtoMapper, AlbumRepository albumRepository) {
         this.publisherRepository = publisherRepository;
         this.publisherDtoMapper = publisherDtoMapper;
+        this.albumRepository = albumRepository;
     }
 
     public List<PublisherResponseDTO> findAllPublishers() {
@@ -51,14 +54,15 @@ public class PublisherService {
 
 
     public void deletePublisher(Long id) {
-        publisherRepository.deleteById(id);
-    }
 
-    private PublisherEntity getPublisherById(Long id){
-        Optional<PublisherEntity> publisherEntityOptional = publisherRepository.findById(id);
+        PublisherEntity publisherEntity = getPublisherEntity(id);
 
-//        De Optional.orElse() methode haalt de waarde uit de optional, of anders... Dit is één variant om met de Optional om te gaan.
-        return publisherEntityOptional.orElse(null);
+        for (AlbumEntity album : publisherEntity.getAlbums()) {
+            album.setPublisher(null);
+            albumRepository.save(album);
+        }
+
+        publisherRepository.delete(publisherEntity);
     }
 
     //    Deze helper methode haalt de Entity uit de Repository en valideert het. Deze actie werd op meerdere plekken gedaan, daarom is er een helper methode voor gemaakt.

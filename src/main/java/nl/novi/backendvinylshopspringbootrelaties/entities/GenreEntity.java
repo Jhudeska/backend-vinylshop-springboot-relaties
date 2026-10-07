@@ -1,8 +1,6 @@
 package nl.novi.backendvinylshopspringbootrelaties.entities;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "genres")
