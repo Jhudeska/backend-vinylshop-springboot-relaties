@@ -1,6 +1,5 @@
 package nl.novi.backendvinylshopspringbootrelaties.services;
 
-
 import nl.novi.backendvinylshopspringbootrelaties.dtos.publisher.PublisherRequestDTO;
 import nl.novi.backendvinylshopspringbootrelaties.dtos.publisher.PublisherResponseDTO;
 import nl.novi.backendvinylshopspringbootrelaties.entities.PublisherEntity;
@@ -10,7 +9,6 @@ import nl.novi.backendvinylshopspringbootrelaties.repository.PublisherRepository
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class PublisherService {
@@ -51,14 +49,8 @@ public class PublisherService {
 
 
     public void deletePublisher(Long id) {
-        publisherRepository.deleteById(id);
-    }
-
-    private PublisherEntity getPublisherById(Long id){
-        Optional<PublisherEntity> publisherEntityOptional = publisherRepository.findById(id);
-
-//        De Optional.orElse() methode haalt de waarde uit de optional, of anders... Dit is één variant om met de Optional om te gaan.
-        return publisherEntityOptional.orElse(null);
+        PublisherEntity publisherEntity = getPublisherEntity(id);
+        publisherRepository.delete(publisherEntity);
     }
 
     //    Deze helper methode haalt de Entity uit de Repository en valideert het. Deze actie werd op meerdere plekken gedaan, daarom is er een helper methode voor gemaakt.

@@ -1,6 +1,5 @@
 package nl.novi.backendvinylshopspringbootrelaties.services;
 
-
 import jakarta.persistence.EntityNotFoundException;
 import nl.novi.backendvinylshopspringbootrelaties.dtos.genre.GenreRequestDTO;
 import nl.novi.backendvinylshopspringbootrelaties.dtos.genre.GenreResponseDTO;
@@ -11,7 +10,6 @@ import nl.novi.backendvinylshopspringbootrelaties.repository.GenreEntityReposito
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class GenreEntityService {
@@ -36,7 +34,7 @@ public class GenreEntityService {
     }
 
 
-public GenreResponseDTO createGenre(GenreRequestDTO genreDTO) {
+    public GenreResponseDTO createGenre(GenreRequestDTO genreDTO) {
         GenreEntity genreEntity = genreDTOMapper.mapToEntity(genreDTO);
         genreEntity = genreEntityRepository.save(genreEntity);
         return genreDTOMapper.mapToDto(genreEntity);
@@ -55,25 +53,13 @@ public GenreResponseDTO createGenre(GenreRequestDTO genreDTO) {
 
     private GenreEntity getGenreEntity(Long id) {
         GenreEntity existingGenreEntity = genreEntityRepository.findById(id)
-                .orElseThrow(() -> new RecordNotFoundException("Genre " + id +" not found"));
+                .orElseThrow(() -> new RecordNotFoundException("Genre " + id + " not found"));
         return existingGenreEntity;
     }
 
     public void deleteGenre(Long id) {
-        genreEntityRepository.deleteById(id);
+        GenreEntity genreEntity = getGenreEntity(id);
+        genreEntityRepository.delete(genreEntity);
     }
 
-//    private GenreEntity getGenreById(Long id){
-//        Optional<GenreEntity> genreEntityOptional = genreEntityRepository.findById(id);
-//
-////        Een if-statement waar je expliciet de Optional.isPresent() of Optional.isEmpty() checkt, is één variant om met de optional om te gaan.
-//        if(genreEntityOptional.isPresent()){
-//            return genreEntityOptional.get();
-//        } else {
-//            throw new RecordNotFoundException("Genre " + id +" not found");
-//        }
-//    }
-
 }
-
-

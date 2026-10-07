@@ -13,10 +13,7 @@ import nl.novi.backendvinylshopspringbootrelaties.repository.ArtistRepository;
 import nl.novi.backendvinylshopspringbootrelaties.repository.GenreEntityRepository;
 import nl.novi.backendvinylshopspringbootrelaties.repository.PublisherRepository;
 import org.springframework.stereotype.Service;
-
-import jakarta.persistence.EntityNotFoundException;
 import nl.novi.backendvinylshopspringbootrelaties.dtos.album.AlbumRequestDTO;
-import nl.novi.backendvinylshopspringbootrelaties.entities.PublisherEntity;
 
 
 import java.util.List;

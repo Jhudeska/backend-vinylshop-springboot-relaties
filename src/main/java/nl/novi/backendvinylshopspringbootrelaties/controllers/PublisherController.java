@@ -1,6 +1,5 @@
 package nl.novi.backendvinylshopspringbootrelaties.controllers;
 
-
 import jakarta.validation.Valid;
 import nl.novi.backendvinylshopspringbootrelaties.dtos.publisher.PublisherRequestDTO;
 import nl.novi.backendvinylshopspringbootrelaties.dtos.publisher.PublisherResponseDTO;
@@ -37,7 +36,7 @@ public class PublisherController {
     }
 
     @PostMapping
-    public ResponseEntity<PublisherResponseDTO> createPublisher(@RequestBody PublisherRequestDTO publisherInput) {
+    public ResponseEntity<PublisherResponseDTO> createPublisher(@RequestBody @Valid PublisherRequestDTO publisherInput) {
         var newPublisher = publisherService.createPublisher(publisherInput);
         return ResponseEntity.created(urlHelper.getCurrentUrlWithId(newPublisher.getId())).body(newPublisher);
     }
