@@ -4,6 +4,7 @@ import jakarta.persistence.EntityNotFoundException;
 import nl.novi.backendvinylshopspringbootrelaties.dtos.album.AlbumExtendedResponseDTO;
 import nl.novi.backendvinylshopspringbootrelaties.dtos.album.AlbumResponseDTO;
 import nl.novi.backendvinylshopspringbootrelaties.entities.AlbumEntity;
+import nl.novi.backendvinylshopspringbootrelaties.entities.ArtistEntity;
 import nl.novi.backendvinylshopspringbootrelaties.entities.GenreEntity;
 import nl.novi.backendvinylshopspringbootrelaties.entities.PublisherEntity;
 import nl.novi.backendvinylshopspringbootrelaties.exceptions.RecordNotFoundException;
@@ -138,5 +139,60 @@ public class AlbumService {
     }
 
 
+    public void linkArtist(Long albumId, Long artistId) {
+
+        AlbumEntity album = albumRepository.findById(albumId)
+                .orElseThrow(() ->
+                        new RecordNotFoundException(
+                                "Album " + albumId + " not found"
+                        )
+                );
+
+        ArtistEntity artist = artistRepository.findById(artistId)
+                .orElseThrow(() ->
+                        new RecordNotFoundException(
+                                "Artist " + artistId + " not found"
+                        )
+                );
+
+        album.getArtists().add(artist);
+
+        albumRepository.save(album);
+    }
+
+    public void unlinkArtist(Long albumId, Long artistId) {
+
+        AlbumEntity album = albumRepository.findById(albumId)
+                .orElseThrow(() ->
+                        new RecordNotFoundException(
+                                "Album " + albumId + " not found"
+                        )
+                );
+
+        ArtistEntity artist = artistRepository.findById(artistId)
+                .orElseThrow(() ->
+                        new RecordNotFoundException(
+                                "Artist " + artistId + " not found"
+                        )
+                );
+
+        album.getArtists().remove(artist);
+
+        albumRepository.save(album);
+    }
+
+
+    public List<AlbumResponseDTO> getAlbumsWithStock(Boolean stock) {
+
+        List<AlbumEntity> albums;
+
+        if (stock) {
+            albums = albumRepository.findByStockItemsNotEmpty();
+        } else {
+            albums = albumRepository.findByStockItemsEmpty();
+        }
+
+        return albumDTOMapper.mapToDto(albums);
+    }
 
 }

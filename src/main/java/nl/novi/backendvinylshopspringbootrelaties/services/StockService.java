@@ -105,7 +105,7 @@ public class StockService {
                         )
                 );
 
-        stockRepository.delete(stock);
+        stockRepository.deleteByIdAndAlbumId(stockId, albumId);
     }
 
     private AlbumEntity getAlbumEntity(Long albumId) {

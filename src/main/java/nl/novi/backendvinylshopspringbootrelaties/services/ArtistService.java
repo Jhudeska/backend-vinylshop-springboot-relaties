@@ -76,4 +76,13 @@ public class ArtistService {
                         )
                 );
     }
+
+    public List<ArtistResponseDTO> getArtistsForAlbum(Long albumId) {
+
+        List<ArtistEntity> artists =
+                artistRepository.findArtistsByAlbumsId(albumId);
+
+        return artistDTOMapper.mapToDto(artists);
+    }
+
 }
