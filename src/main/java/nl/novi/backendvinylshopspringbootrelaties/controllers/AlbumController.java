@@ -1,16 +1,15 @@
 package nl.novi.backendvinylshopspringbootrelaties.controllers;
 
+import jakarta.validation.Valid;
 import nl.novi.backendvinylshopspringbootrelaties.dtos.album.AlbumExtendedResponseDTO;
+import nl.novi.backendvinylshopspringbootrelaties.dtos.album.AlbumRequestDTO;
 import nl.novi.backendvinylshopspringbootrelaties.dtos.album.AlbumResponseDTO;
 import nl.novi.backendvinylshopspringbootrelaties.helpers.UrlHelper;
 import nl.novi.backendvinylshopspringbootrelaties.services.AlbumService;
 import nl.novi.backendvinylshopspringbootrelaties.services.ArtistService;
 import nl.novi.backendvinylshopspringbootrelaties.services.PublisherService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -41,5 +40,30 @@ public class AlbumController {
         AlbumExtendedResponseDTO album = albumService.getAlbumById(id);
         return ResponseEntity.ok(album);
     }
+
+
+    @PostMapping
+    public ResponseEntity<AlbumResponseDTO> createAlbum(@Valid @RequestBody AlbumRequestDTO albumDTO){
+        AlbumResponseDTO  newAlbum = albumService.createAlbum(albumDTO);
+        return ResponseEntity.ok(newAlbum);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<AlbumResponseDTO> updateAlbum(
+            @PathVariable Long id,
+            @Valid @RequestBody AlbumRequestDTO dto
+    ) {
+        AlbumResponseDTO album = albumService.updateAlbum(id, dto);
+        return ResponseEntity.ok(album);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteAlbum(@PathVariable Long id) {
+
+        albumService.deleteAlbum(id);
+
+        return ResponseEntity.noContent().build();
+    }
+
 
 }
