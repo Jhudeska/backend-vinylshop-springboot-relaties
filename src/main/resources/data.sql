@@ -44,8 +44,8 @@ values (now(), now(), 'good', 19.95, 1),
        (now(), now(), 'good', 15.50, 1),
        (now(), now(), 'poor', 5.95, 2);
 
--- insert into album_artists (album_id, artist_id)
--- values (3, 1);
+insert into album_artists (album_id, artist_id)
+values (3, 1);
 
 -- UPDATE Albums
 -- SET genre_id = (

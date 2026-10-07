@@ -6,6 +6,7 @@ import nl.novi.backendvinylshopspringbootrelaties.dtos.album.AlbumResponseDTO;
 import nl.novi.backendvinylshopspringbootrelaties.entities.AlbumEntity;
 import nl.novi.backendvinylshopspringbootrelaties.entities.GenreEntity;
 import nl.novi.backendvinylshopspringbootrelaties.entities.PublisherEntity;
+import nl.novi.backendvinylshopspringbootrelaties.exceptions.RecordNotFoundException;
 import nl.novi.backendvinylshopspringbootrelaties.mapperImpl.AlbumDTOMapper;
 import nl.novi.backendvinylshopspringbootrelaties.mapperImpl.AlbumExtendedDTOMapper;
 import nl.novi.backendvinylshopspringbootrelaties.repository.AlbumRepository;
@@ -51,7 +52,7 @@ public class AlbumService {
 
     public AlbumExtendedResponseDTO getAlbumById(Long id) {
         AlbumEntity album = albumRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Album not found"));
+                .orElseThrow(() -> new RecordNotFoundException("Album not found"));
         return albumExtendedDTOMapper.mapToDto(album);
     }
 
@@ -90,7 +91,7 @@ public class AlbumService {
 
         AlbumEntity album = albumRepository.findById(id)
                 .orElseThrow(() ->
-                        new EntityNotFoundException("Album " + id + " not found")
+                        new RecordNotFoundException("Album " + id + " not found")
                 );
 
         album.setTitle(dto.getTitle());
@@ -98,7 +99,7 @@ public class AlbumService {
 
         GenreEntity genre = genreRepository.findById(dto.getGenreId())
                 .orElseThrow(() ->
-                        new EntityNotFoundException(
+                        new RecordNotFoundException(
                                 "Genre " + dto.getGenreId() + " not found"
                         )
                 );
@@ -107,7 +108,7 @@ public class AlbumService {
 
         PublisherEntity publisher = publisherRepository.findById(dto.getPublisherId())
                 .orElseThrow(() ->
-                        new EntityNotFoundException(
+                        new RecordNotFoundException(
                                 "Publisher " + dto.getPublisherId() + " not found"
                         )
                 );
@@ -124,7 +125,7 @@ public class AlbumService {
 
         AlbumEntity album = albumRepository.findById(id)
                 .orElseThrow(() ->
-                        new EntityNotFoundException("Album " + id + " not found")
+                        new RecordNotFoundException("Album " + id + " not found")
                 );
 
         if (album.getStockItems() != null && !album.getStockItems().isEmpty()) {
