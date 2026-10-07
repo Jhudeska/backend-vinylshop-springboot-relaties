@@ -1,8 +1,15 @@
 package nl.novi.backendvinylshopspringbootrelaties.dtos.album;
 
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import nl.novi.backendvinylshopspringbootrelaties.dtos.genre.GenreResponseDTO;
 import nl.novi.backendvinylshopspringbootrelaties.dtos.publisher.PublisherResponseDTO;
-
+@JsonPropertyOrder({
+        "id",
+        "title",
+        "releaseYear",
+        "genre",
+        "publisher"
+})
 public class AlbumResponseDTO {
 
     // DTO Response of album

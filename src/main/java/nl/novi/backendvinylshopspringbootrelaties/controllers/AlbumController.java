@@ -1,5 +1,6 @@
 package nl.novi.backendvinylshopspringbootrelaties.controllers;
 
+import nl.novi.backendvinylshopspringbootrelaties.dtos.album.AlbumExtendedResponseDTO;
 import nl.novi.backendvinylshopspringbootrelaties.dtos.album.AlbumResponseDTO;
 import nl.novi.backendvinylshopspringbootrelaties.helpers.UrlHelper;
 import nl.novi.backendvinylshopspringbootrelaties.services.AlbumService;
@@ -7,6 +8,7 @@ import nl.novi.backendvinylshopspringbootrelaties.services.ArtistService;
 import nl.novi.backendvinylshopspringbootrelaties.services.PublisherService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -32,5 +34,12 @@ public class AlbumController {
         return ResponseEntity.ok(albums);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<AlbumExtendedResponseDTO> getAlbumById(
+            @PathVariable Long id
+    ) {
+        AlbumExtendedResponseDTO album = albumService.getAlbumById(id);
+        return ResponseEntity.ok(album);
+    }
 
 }

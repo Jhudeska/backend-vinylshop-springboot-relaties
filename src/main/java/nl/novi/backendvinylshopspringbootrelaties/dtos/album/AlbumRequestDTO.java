@@ -1,5 +1,6 @@
 package nl.novi.backendvinylshopspringbootrelaties.dtos.album;
 
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import jakarta.validation.constraints.*;
 
 public class AlbumRequestDTO {
