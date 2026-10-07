@@ -1,5 +1,6 @@
 package nl.novi.backendvinylshopspringbootrelaties.helpers;
 
+import jakarta.servlet.http.HttpServletRequest;
 import nl.novi.backendvinylshopspringbootrelaties.exceptions.RecordNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -34,13 +35,16 @@ public class GlobalExceptionHandler {
 
   @ExceptionHandler(IllegalStateException.class)
   public ResponseEntity<Map<String, Object>> handleIllegalStateException(
-          IllegalStateException ex) {
+          IllegalStateException ex,
+          HttpServletRequest request) {
 
     Map<String, Object> response = new LinkedHashMap<>();
 
     response.put("timestamp", LocalDateTime.now());
     response.put("status", HttpStatus.CONFLICT.value());
     response.put("error", ex.getMessage());
+    response.put("path", request.getRequestURI());
+
 
     return ResponseEntity
             .status(HttpStatus.CONFLICT)
